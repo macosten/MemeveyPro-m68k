@@ -48,7 +48,7 @@ resource 'DITL' (ditlUnimplemented, purgeable){
 		{56, 300, 56+20, 380},
 		Button {enabled, "OK"};
 
-		{8, 72, 70, 380},
+		{8, 72, 38, 380},
 		StaticText { disabled, "This functionality has not yet been implemented."};
 	}
 };
