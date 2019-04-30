@@ -23,7 +23,7 @@ resource 'DITL' (ditlAbout, purgeable) {
 		UserItem {enabled};
 
 		{ 30, 110, 100, 350 },
-		StaticText {enabled, "PetProject-m68k 0.0.0\rBy macosten (Zac S.)"};
+		StaticText {enabled, "PetProject-m68k 0.0.0\rBy Zac Silverman (macosten)"};
 		
 		{ 25, 10, 95, 105 },
 		Picture {enabled, 128};
