@@ -53,9 +53,19 @@ resource 'DITL' (ditlUnimplemented, purgeable){
 	}
 };
 
+resource 'WIND' (windMain){
+	{0, 0, 400, 600},
+	zoomDocProc,
+	visible,
+	goAway,
+	0,
+	"PetProject-m68k",
+	centerMainScreen
+};
+
 resource 'DLOG' (dlogMain){ //Purgeable?
 	{0, 0, 400, 600},
-	movableDBoxProc,
+	zoomDocProc,
 	visible,
 	goAway, //Revisit this
 	0,
@@ -94,7 +104,7 @@ resource 'SIZE' (-1) {
 	500 * 1024,	// Carbon apparently needs additional memory.
 	500 * 1024
 #else
-	100 * 1024,
-	100 * 1024
+	200 * 1024,
+	200 * 1024
 #endif
 };

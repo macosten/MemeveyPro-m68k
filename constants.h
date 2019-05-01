@@ -35,8 +35,10 @@
 #define alrtUnimplemented 129
 #define ditlUnimplemented 129
 
+#define windMain 130
 #define dlogMain 130
 #define ditlMain 130
+
 
 #define dlogMainSmall 131
 #define ditlMainSmall 131

@@ -46,10 +46,9 @@ void PresentUnimplementedDlog(){
 }
 
 void PresentMainDlog(){
-    _mainDialog = GetNewDialog(dlogMain, 0, (WindowPtr)-1);
-    MacSetPort(_mainDialog);
-
-    SwitchDITL(ditlMain);
+    _mainDialog = GetNewWindow(windMain, 0, (WindowPtr)-1);
+    //_mainDialog = GetNewDialog(dlogMain, 0, (WindowPtr)-1);
+    //SwitchDITL(ditlMain);
     //Do anything else.
 }
 
@@ -67,7 +66,7 @@ void SwitchDITL(short int toDitlID){
 	AppendDITL(_mainDialog, newDitl, overlayDITL);
 	ReleaseResource(newDitl);
 
-	UpdateDialog(_mainDialog, _mainDialog->visRgn);
+	//UpdateDialog(_mainDialog, _mainDialog->visRgn);
 }
 
 
@@ -113,7 +112,7 @@ void HandleEvent(EventRecord *eventPtr){
 			break;
 
 		case updateEvt:
-			//HandleUpdate(eventPtr);
+			HandleUpdate(eventPtr);
 			break;
 		case kHighLevelEvent:
 			AEProcessAppleEvent(eventPtr);
@@ -140,7 +139,8 @@ void HandleMouseDown(EventRecord *eventPtr){
 
 		case inContent:
 			//If it's in the content of the window. Todo.
-			//HandleInContent(eventPtr)
+			if (window != FrontWindow()) SelectWindow(window);
+			HandleInContent(eventPtr);
 			break;
 		
 		case inDrag:
@@ -200,14 +200,29 @@ void HandleUpdate(EventRecord *eventPtr){
 	}
 }
 
+void HandleInContent(EventRecord *eventPtr){
+	//Todo
+	WindowPtr window;
+	short int part;
 
+	part = FindWindow(eventPtr->where, &window);
+
+	//Drag the window if CMD is held down.
+	if ((eventPtr->modifiers & cmdKey) != 0) 
+		DragWindow(window, eventPtr->where, &qd.screenBits.bounds);
+
+	else 
+		DragWindow(window, eventPtr->where, &qd.screenBits.bounds);
+
+}
 
 
 void QuitApp(){
 	_run = 0; //Now, the EventLoop will stop.
 	//Do any clean-up here.
-	CloseDialog(_mainDialog);
-
+	CloseWindow(_mainDialog);
+	//CloseDialog(_mainDialog);
+	//ExitToShell();
 	//For now, there isn't much else to do.
 
 }

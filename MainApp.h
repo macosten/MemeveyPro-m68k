@@ -27,5 +27,6 @@ void HandleEvent(EventRecord *eventPtr);
 void HandleMouseDown(EventRecord *eventPtr);
 void HandleMenuChoice(long menuChoice);
 void HandleUpdate(EventRecord *eventPtr);
+void HandleInContent(EventRecord *eventPtr);
 
 void QuitApp();
