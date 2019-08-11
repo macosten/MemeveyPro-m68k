@@ -24,9 +24,18 @@
 #define menuItemQuit 4
 
 //
+#define menuRandom 132
+
+#define menuAutoJerk 1
+
+#define menuFuck 255
+
+//
 #define menuHelp 130
 
 #define menuitemHelp 1
+
+
 
 /*Dialogs, Alerts, and DITLs*/
 #define dlogAbout 128

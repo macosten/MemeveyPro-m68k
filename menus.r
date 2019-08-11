@@ -14,6 +14,7 @@ resource 'MENU' (menuApple, preload) { /*resource ID, preload resource*/
 	0b1111111111111111111111111111101, /*enable About item, */
 					/* disable divider, */
 					/* enable all other items*/
+					/* Read this word from the LSB to the MSB.*/
 	enabled, /*enable menu title*/
 	apple, /*menu title*/
 	{

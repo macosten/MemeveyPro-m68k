@@ -9,7 +9,7 @@ resource 'DLOG' (dlogAbout, purgeable) {
  	noGoAway, //No close box
  	0,
  	ditlAbout,
- 	"About PetProject-m68k",
+ 	"About MemeveyPro-m68k",
  	centerMainScreen
 };
 
@@ -23,7 +23,7 @@ resource 'DITL' (ditlAbout, purgeable) {
 		UserItem {enabled};
 
 		{ 30, 110, 100, 350 },
-		StaticText {enabled, "PetProject-m68k 0.0.0\rBy Zac Silverman (macosten)"};
+		StaticText {enabled, "MemeveyPro-m68k 0.0.0\rBy Zac Silverman (macosten)"};
 		
 		{ 25, 10, 95, 105 },
 		Picture {enabled, 128};
@@ -59,7 +59,7 @@ resource 'WIND' (windMain){
 	visible,
 	goAway,
 	0,
-	"PetProject-m68k",
+	"MemeveyPro-m68k",
 	centerMainScreen
 };
 
@@ -70,14 +70,14 @@ resource 'DLOG' (dlogMain){ //Purgeable?
 	goAway, //Revisit this
 	0,
 	ditlMain,
-	"PetProject-m68k",
+	"MemeveyPro-m68k",
 	centerMainScreen
 };
 
 resource 'DITL' (ditlMain, purgeable){
 	{
 		{10, 10, 40, 300},
-		StaticText {disabled, "PetProject Main Window."};
+		StaticText {disabled, "MemeveyPro Main Window."};
 	}
 };
 

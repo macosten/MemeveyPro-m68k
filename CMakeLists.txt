@@ -6,7 +6,7 @@
 
 cmake_minimum_required(VERSION 2.8)
 
-add_application(PetProject
+add_application(MemeveyPro
 	constants.h
 	main.c
 	MainApp.c
@@ -17,10 +17,10 @@ add_application(PetProject
 
 # Enable -ffunction-sections and -gc-sections to make the app as small as possible
 # On 68K, also enable --mac-single to build it as a single-segment app (so that this code path doesn't rot)
-set_target_properties(PetProject PROPERTIES COMPILE_OPTIONS -ffunction-sections)
+set_target_properties(MemeveyPro PROPERTIES COMPILE_OPTIONS -ffunction-sections)
 if(CMAKE_SYSTEM_NAME MATCHES Retro68)
-	set_target_properties(PetProject PROPERTIES LINK_FLAGS "-Wl,-gc-sections -Wl,--mac-single")
+	set_target_properties(MemeveyPro PROPERTIES LINK_FLAGS "-Wl,-gc-sections -Wl,--mac-single")
 
 else()
-	set_target_properties(PetProject PROPERTIES LINK_FLAGS "-Wl,-gc-sections")
+	set_target_properties(MemeveyPro PROPERTIES LINK_FLAGS "-Wl,-gc-sections")
 endif()
