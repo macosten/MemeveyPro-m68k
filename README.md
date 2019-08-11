@@ -1,9 +1,9 @@
-# PetProject-m68k
-A client for a web app that doesn't really exist yet.
+# MemeveyPro-m68k
+Basically, a giant playground for me to play with Retro68.
 
 ## Prerequisites.
-PetProject-m68k requires Retro68 to compile.
+MemeveyPro-m68k requires Retro68 to compile. If you're having trouble getting it to compile, try using the --no-ppc option.
 
-It will probably require System 7 or later. It may or may not support resolutions under 640 by 480, so I'd suggest using a computer with at least a 640 by 480 resolution display until I know for sure.
+Systems earlier than System 6 will not be targets, though this may work on Systems earlier than 6.
 
-If you want to emulate it, use BasiliskII or the Macintosh II version of MiniVMac.
+If you want to run this program, use BasiliskII or (preferably the Macintosh II version of) MiniVMac.
