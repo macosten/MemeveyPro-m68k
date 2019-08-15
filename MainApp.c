@@ -54,6 +54,7 @@ void PresentMainDlog(){
 
 //Changes the UI of the main dialog.
 //This lets us keep one dialog box around and just change its guts.
+//The only problem is that I have never gotten this to work, so...
 void SwitchDITL(short int toDitlID){
 	_activeDITL = toDitlID;
 
@@ -102,6 +103,8 @@ void HandleEvent(EventRecord *eventPtr){
 	switch (eventPtr->what){
 
 		case keyDown:
+			//No commands here yet...
+			break;
 		case autoKey:
 			eventChar = eventPtr->message & charCodeMask;
 			if ((eventPtr->modifiers & cmdKey) != 0) HandleMenuChoice(MenuKey(eventChar));
@@ -211,7 +214,7 @@ void HandleInContent(EventRecord *eventPtr){
 	if ((eventPtr->modifiers & cmdKey) != 0) 
 		DragWindow(window, eventPtr->where, &qd.screenBits.bounds);
 
-	else 
+	else //For now, drag the window anyway.
 		DragWindow(window, eventPtr->where, &qd.screenBits.bounds);
 
 }

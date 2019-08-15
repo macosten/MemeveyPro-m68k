@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="MemeveyPro_m68k" Database="" Version="10.0.0">
+  <Project Name="MemeveyPro_m68k" Path="MemeveyPro_m68k.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="no">
+      <Environment/>
+      <Project Name="MemeveyPro_m68k" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="no">
+      <Environment/>
+      <Project Name="MemeveyPro_m68k" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Default" Selected="yes">
+      <Environment/>
+      <Project Name="MemeveyPro_m68k" ConfigName="Basilisk II"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>
