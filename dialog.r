@@ -26,14 +26,44 @@ resource 'DITL' (ditlAbout, purgeable) {
 		StaticText {enabled, "MemeveyPro-m68k 0.0.0\rBy Zac Silverman (macosten)"};
 		
 		{ 25, 10, 95, 105 },
-		Picture {enabled, 128};
+		Picture {enabled, pictPikawow};
 
 	}
 };
 
-resource 'ALRT' (alrtUnimplemented, purgeable) {
+resource 'DLOG' (dlogPikaAlert, purgeable) {
+	//Top Left Bottom Right
+	{ 0, 0, 145, 350 },
+	dBoxProc,
+ 	visible,
+ 	noGoAway, //No close box
+ 	0,
+ 	ditlPikaAlert,
+ 	"About MemeveyPro-m68k",
+ 	centerMainScreen
+};
+
+resource 'DITL' (ditlPikaAlert, purgeable) {
+	{
+		// Top Left Bottom Right 
+		{ 110, 200, 130, 320 },
+		Button { enabled, "OK" };
+
+		{ 110-5, 200-5, 130+5, 320+5 },
+		UserItem {enabled};
+
+		{ 30, 110, 100, 350 },
+		StaticText {enabled, "^0"};
+		
+		{ 25, 10, 95, 105 },
+		Picture {enabled, pictPikawow};
+
+	}
+};
+
+resource 'ALRT' (alrtGenericTextless, purgeable) {
 	{ 0, 0, 90, 400 },
-	ditlUnimplemented,
+	ditlGenericTextless,
 	{
 		OK, visible, sound1,
 		OK, visible, sound1,
@@ -43,13 +73,13 @@ resource 'ALRT' (alrtUnimplemented, purgeable) {
 	alertPositionMainScreen
 };
 
-resource 'DITL' (ditlUnimplemented, purgeable){
+resource 'DITL' (alrtGenericTextless, purgeable){
 	{
 		{56, 300, 56+20, 380},
 		Button {enabled, "OK"};
 
 		{8, 72, 38, 380},
-		StaticText { disabled, "This functionality has not yet been implemented."};
+		StaticText { disabled, "^0"}; //There was an error opening that file. Try a different file, or try again later/after a restart.
 	}
 };
 
@@ -77,7 +107,7 @@ resource 'DLOG' (dlogMain){ //Purgeable?
 resource 'DITL' (ditlMain, purgeable){
 	{
 		{10, 10, 40, 300},
-		StaticText {disabled, "MemeveyPro Main Window."};
+		StaticText {disabled, "Memevey Pro Main Window."};
 	}
 };
 
@@ -100,11 +130,6 @@ resource 'SIZE' (-1) {
 	reserved,
 	reserved,
 	reserved,
-#ifdef TARGET_API_MAC_CARBON
-	500 * 1024,	// Carbon apparently needs additional memory.
-	500 * 1024
-#else
-	200 * 1024,
-	200 * 1024
-#endif
+	1000 * 1024,
+	1000 * 1024
 };

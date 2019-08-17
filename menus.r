@@ -3,7 +3,7 @@
 #include "constants.h"
 
 resource 'MBAR' (defaultMenubar, preload) {
-	{menuApple, menuUser, menuPets, menuHelp};
+	{menuApple, menuUser, menuAutojerk, menuHelp, menuFuck};
 };
 
 /*See Inside Macintosh: Macintosh Toolbox / More Macintosh Toolbox*/
@@ -19,7 +19,7 @@ resource 'MENU' (menuApple, preload) { /*resource ID, preload resource*/
 	apple, /*menu title*/
 	{
 		/*first menu item*/
-		"About PetProject...", /*text of menu item*/
+		"About Memevey Pro...", /*text of menu item*/
 		noicon, nokey, nomark, plain; /*item characteristics*/
 		/*second menu item*/
 		"-",
@@ -28,8 +28,6 @@ resource 'MENU' (menuApple, preload) { /*resource ID, preload resource*/
 
 }; 
 
-
-
 resource 'MENU' (menuUser, preload) {
 	menuUser,
 	textMenuProc,
@@ -37,27 +35,35 @@ resource 'MENU' (menuUser, preload) {
 	enabled,
 	"User",
 	{
-		"Login",
-		noicon, nokey, nomark, plain;
-		"Logout",
-		noicon, nokey, nomark, plain;
-		"-",
-		noicon, nokey, nomark, plain,
 		"Quit",
 		noicon, nokey, nomark, plain
 	}
 };
 
-resource 'MENU' (menuPets, preload) {
-	menuPets,
+resource 'MENU' (menuAutojerk, preload) {
+	menuAutojerk,
+	textMenuProc,
+	0b1111111111111111111111111111111,
+	enabled,
+	"AutoJerk",
+	{
+		"Open Input File...",
+		noicon, nokey, nomark, plain,
+		"-", 
+		noicon, nokey, nomark, plain,
+		"Generate",
+		noicon, nokey, nomark, plain
+	}
+};
+
+resource 'MENU' (menuFuck, preload) {
+	menuFuck,
 	textMenuProc,
 	0b1111111111111111111111111111111, /*I assume this enables all items, dunno though.*/
 	enabled,
-	"Pets",
+	"Fuck",
 	{
-		"View Pets",
-		noicon, nokey, nomark, plain;
-		"Create Pet",
+		"Attempt Overwrite of Low Memory...",
 		noicon, nokey, nomark, plain
 	}
 };

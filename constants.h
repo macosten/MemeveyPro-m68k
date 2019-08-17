@@ -1,6 +1,9 @@
 
 // constants
 
+//This is probably one of the dumber things I've ever done on a project like this.
+//More importantly, this might be better-organized as a bunch of separate files.
+
 /*Default Menu Bar*/
 #define defaultMenubar 128
 
@@ -10,44 +13,54 @@
 #define menuitemAbout 1
 
 
-/*Pets Menu*/
-#define menuPets 129
+//User Menu
+#define menuUser 129
 
-#define menuitemMyPets 1
-#define menuitemNewPet 2
+#define menuitemQuit 1 //Make sure this matches up with the position of the correct item in the menu
 
-//
-#define menuUser 131
+//AutoJerk Menu
+#define menuAutojerk 130
 
-#define menuitemLogin 1
-#define menuItemLogout 2
-#define menuItemQuit 4
-
-//
-#define menuRandom 132
-
-#define menuAutoJerk 1
-
-#define menuFuck 255
+#define menuitemAutojerkOpenFile 1
+//Divider at 2
+#define menuitemAutojerkGenerate 3
 
 //
-#define menuHelp 130
+#define menuHelp 200
 
 #define menuitemHelp 1
 
+//
+#define menuFuck 255
 
 
 /*Dialogs, Alerts, and DITLs*/
 #define dlogAbout 128
 #define ditlAbout 128
 
-#define alrtUnimplemented 129
-#define ditlUnimplemented 129
+#define alrtGenericTextless 129
+#define ditlGenericTextless 129
 
 #define windMain 130
 #define dlogMain 130
 #define ditlMain 130
 
 
-#define dlogMainSmall 131
-#define ditlMainSmall 131
+#define dlogPikaAlert 131
+#define ditlPikaAlert 131
+
+
+
+//AutoJerk
+
+#define ditlAutojerkOpenFile 200
+#define dlogAutojerkOpenFile 200
+
+#define ditlAutojerkResult 201
+#define dlogAutojerkResult 201
+
+//Picture Resources
+#define pictPikawow 128
+
+//Other Program Parameters
+#define programSize 1000 * 1024 //1000 * 1 kB

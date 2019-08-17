@@ -1,6 +1,9 @@
 #include "MainApp.h"
 #include "constants.h"
 
+#include <stdlib.h>
+#include <time.h>
+
 #ifndef TARGET_API_MAC_CARBON
     /* NOTE: this is checking whether the Dialogs.h we use *knows* about Carbon,
              not whether we are actually compiling for Cabon.
@@ -39,7 +42,11 @@ void Initialize() {
     //Draw the menu bar
     DrawMenuBar();
 
+	//Seed the random number generator. There's a Macintosh Toolbox call for this, I think, but I forget what it was.
+	srand(time(0));
+	
     //Do anything else.
+	
 }
 
 

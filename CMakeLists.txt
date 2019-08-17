@@ -8,11 +8,15 @@ cmake_minimum_required(VERSION 2.8)
 
 add_application(MemeveyPro
 	constants.h
-	main.c
-	MainApp.c
+	main.cpp
+	MainApp.cpp
 	dialog.r
 	menus.r
 	pika.r
+	markov.h
+	Autojerk.r
+	Autojerk.cpp
+	Error.cpp
 	)
 
 # Enable -ffunction-sections and -gc-sections to make the app as small as possible

@@ -5,8 +5,12 @@
 #include <Events.h>
 #include <Devices.h>
 #include <Resources.h>
+#include <Types.h>
+
+#include <string>
 
 #include "constants.h"
+#include "Autojerk.h"
 
 extern DialogPtr _mainDialog;
 

@@ -1,9 +1,8 @@
 #include "MainApp.h"
 
+
 DialogPtr _mainDialog;
 char _run = 1; //Set this to 0 when it's time to quit.
-int _activeDITL = ditlMain; //This keeps track of the current UI that _mainDialog displays.
-
 pascal void ButtonFrameProc(DialogRef dlg, DialogItemIndex itemNo){
     DialogItemType type;
     Handle itemH;
@@ -39,15 +38,55 @@ void PresentAboutBox(){
 
 }
 
-void PresentUnimplementedDlog(){
-    
-    CautionAlert(alrtUnimplemented, NULL);
+void PresentAutojerkResult(){
 
+
+		
+	DialogPtr autojerkResultDialog = GetNewDialog(dlogAutojerkResult, 0, (WindowPtr)-1);
+    DialogItemType type;
+    Handle itemH;
+    Rect box;
+	short item;
+
+    GetDialogItem(autojerkResultDialog, 2, &type, &itemH, &box);
+    SetDialogItem(autojerkResultDialog, 2, type, (Handle) NewUserItemUPP(&ButtonFrameProc), &box);
+ 
+	MacSetPort(autojerkResultDialog);
+	UpdateDialog(autojerkResultDialog, autojerkResultDialog->visRgn);
+	
+	SelectWindow(autojerkResultDialog);
+		
+	/*The strings you pass in the parameters to ParamText cannot contain the special strings
+	^0 through ^3, or else the procedure will enter an endless loop of substitutions in
+	versions of system software earlier than 7.1.*/
+	if (!_markov.isInitialized()){
+		//Return an error eventually.
+		ParamText("\pThe Markov Object has not been initialized yet. Try opening a file.","\p","\p","\p");
+		do {
+			ModalDialog(NULL, &item);
+		} while(item != 1);
+		
+	} else {
+		//ParamText(myString,myString,myString,myString);
+		ParamText("\pThe code to actually generate stuff hasn't been written yet...","\p","\p","\p");
+		do {
+			ModalDialog(NULL, &item);
+		} while(item != 1);
+    }
+	
+	FlushEvents(everyEvent, 0);
+	DisposeWindow(autojerkResultDialog);
+	
+	MacSetPort(_mainDialog);
+}
+
+void PresentUnimplementedDlog(){
+    //CautionAlert(alrtUnimplemented, NULL);
 }
 
 void PresentMainDlog(){
-    _mainDialog = GetNewWindow(windMain, 0, (WindowPtr)-1);
-    //_mainDialog = GetNewDialog(dlogMain, 0, (WindowPtr)-1);
+    //_mainDialog = GetNewWindow(windMain, 0, (WindowPtr)-1);
+    _mainDialog = GetNewDialog(dlogMain, 0, (WindowPtr)-1);
     //SwitchDITL(ditlMain);
     //Do anything else.
 }
@@ -55,6 +94,7 @@ void PresentMainDlog(){
 //Changes the UI of the main dialog.
 //This lets us keep one dialog box around and just change its guts.
 //The only problem is that I have never gotten this to work, so...
+/*
 void SwitchDITL(short int toDitlID){
 	_activeDITL = toDitlID;
 
@@ -67,9 +107,9 @@ void SwitchDITL(short int toDitlID){
 	AppendDITL(_mainDialog, newDitl, overlayDITL);
 	ReleaseResource(newDitl);
 
-	//UpdateDialog(_mainDialog, _mainDialog->visRgn);
+	UpdateDialog(_mainDialog, _mainDialog->visRgn);
 }
-
+*/
 
 //
 // Event Processing
@@ -80,7 +120,7 @@ void EventLoop(){
 
     //For now, present the main dialog here.
     PresentMainDlog();
-
+	
     //Essentially, the app's main loop.
     while (_run){
         if (WaitNextEvent(everyEvent, &event, 0, NULL)){
@@ -93,6 +133,7 @@ void EventLoop(){
         }
     }
 
+	//For the "Crash Computer" option: Just try opening a DITL/DLOG that doesn't exist, or something :thonk:
 
 }
 
@@ -152,7 +193,11 @@ void HandleMouseDown(EventRecord *eventPtr){
 			break;
 
 		case inGoAway: //with "goAway" being the close box
-			if (TrackGoAway(window, eventPtr->where)) QuitApp();
+			if (TrackGoAway(window, eventPtr->where)){
+				//We can do other things here, but for now...
+				QuitApp();
+				
+			}
 			break;
 
 	}
@@ -176,8 +221,24 @@ void HandleMenuChoice(long menuChoice){
 	}
 	else if (menuID == menuUser){
 		switch (menuItem){
-			case menuItemQuit:
+			case menuitemQuit:
 				QuitApp();
+				break;
+			default:
+				PresentUnimplementedDlog();
+				break;
+		}
+	}
+	else if (menuID == menuAutojerk){
+		switch (menuItem){
+			case menuitemAutojerkGenerate:
+				PresentAutojerkResult();
+				break;
+			case menuitemAutojerkOpenFile:
+				Point origin;
+				origin.h = 80;
+				origin.v = 80;
+				OpenAutojerkSourceFile(origin);
 				break;
 			default:
 				PresentUnimplementedDlog();
@@ -206,25 +267,30 @@ void HandleUpdate(EventRecord *eventPtr){
 void HandleInContent(EventRecord *eventPtr){
 	//Todo
 	WindowPtr window;
-	short int part;
+	DialogPtr dialog;
+	short part, item;
 
 	part = FindWindow(eventPtr->where, &window);
-
+	
+	
+	
+	//SelectWindow(window); //Bring the clicked window to the front.
+	
 	//Drag the window if CMD is held down.
-	if ((eventPtr->modifiers & cmdKey) != 0) 
-		DragWindow(window, eventPtr->where, &qd.screenBits.bounds);
-
-	else //For now, drag the window anyway.
-		DragWindow(window, eventPtr->where, &qd.screenBits.bounds);
+	if ((eventPtr->modifiers & cmdKey) != 0) DragWindow(window, eventPtr->where, &qd.screenBits.bounds);
+	
+	if (DialogSelect(eventPtr, &dialog, &item)){
+		if (dialog == _mainDialog) DragWindow(window, eventPtr->where, &qd.screenBits.bounds); //We'll do something more here later...
+		else {} //Do nothing for now
+	}
 
 }
-
 
 void QuitApp(){
 	_run = 0; //Now, the EventLoop will stop.
 	//Do any clean-up here.
-	CloseWindow(_mainDialog);
-	//CloseDialog(_mainDialog);
+	//CloseWindow(_mainDialog);
+	CloseDialog(_mainDialog);
 	//ExitToShell();
 	//For now, there isn't much else to do.
 

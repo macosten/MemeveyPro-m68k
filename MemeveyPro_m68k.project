@@ -6,10 +6,18 @@
     </Plugin>
   </Plugins>
   <VirtualDirectory Name="MemeveyPro-m68k">
+    <File Name="Error.cpp"/>
+    <File Name="Error.h"/>
+    <File Name="Autojerk.cpp"/>
+    <File Name="Autojerk.h"/>
+    <File Name="main.cpp"/>
+    <File Name="MainApp.cpp"/>
+    <File Name="Autojerk.r"/>
+    <File Name="menus.r"/>
+    <File Name="dialog.r"/>
+    <File Name="markov.h"/>
     <File Name="constants.h"/>
-    <File Name="main.c"/>
     <File Name="MainApp.h"/>
-    <File Name="MainApp.c"/>
   </VirtualDirectory>
   <VirtualDirectory Name="build">
     <VirtualDirectory Name="CMakeFiles">
